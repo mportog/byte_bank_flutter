@@ -1,6 +1,6 @@
 # byte_bank_alura_app
 
-A new Flutter project with internal persistance
+A new Flutter project with internal persistance using sqflite, named route navigation using nuvigator
 
 ## Getting Started
 
