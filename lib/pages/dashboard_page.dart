@@ -1,5 +1,8 @@
 import 'package:byte_bank_alura_app/helpers/constants.dart';
+import 'package:byte_bank_alura_app/pages/contacts_page.dart';
 import 'package:flutter/material.dart';
+
+const String dashboardPageRouteName = '/';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -28,7 +31,8 @@ class _DashboardPageState extends State<DashboardPage> {
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.all(extraLarge)),
                     ),
-                    onPressed: () => Navigator.pushNamed(context, 'contacts'),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, contactsPageRouteName),
                     icon: contacsIcon,
                     label: const Text(contactsPageTitle))
               ]),

@@ -1,7 +1,6 @@
 import 'package:byte_bank_alura_app/helpers/constants.dart';
 import 'package:byte_bank_alura_app/models/contact_model.dart';
 import 'package:flutter/material.dart';
-import 'package:byte_bank_alura_app/helpers/extensions.dart';
 
 class ContactCardWidget extends StatelessWidget {
   const ContactCardWidget({required this.contact, Key? key}) : super(key: key);

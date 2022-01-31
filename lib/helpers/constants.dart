@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//#region Strings
+//region Strings
 
 const String appName = 'Byte Bank';
 
@@ -16,7 +16,7 @@ const String saveContactLabel = 'Save';
 const String nameTextfieldLabel = 'Full name';
 const String accountTextFieldLabel = 'Account number';
 
-//#endregion
+//endregion
 
 //#region Colors
 

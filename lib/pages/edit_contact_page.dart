@@ -1,10 +1,11 @@
-import 'package:byte_bank_alura_app/database/app_database.dart';
+import 'package:byte_bank_alura_app/dao/contact_dao.dart';
 import 'package:byte_bank_alura_app/helpers/constants.dart';
 import 'package:byte_bank_alura_app/models/contact_model.dart';
 import 'package:byte_bank_alura_app/widgets/custom_contact_textfield_widget.dart';
 import 'package:byte_bank_alura_app/widgets/custom_elevated_bar_buttom_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:byte_bank_alura_app/helpers/extensions.dart';
+
+const String editPageRouteName = 'edit';
 
 class EditContactPage extends StatefulWidget {
   const EditContactPage({this.contact, Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class EditContactPage extends StatefulWidget {
 class _EditContactPageState extends State<EditContactPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _accountController = TextEditingController();
-  late int lastIndex;
+  final ContactDao _contactDao = ContactDao();
   @override
   Widget build(BuildContext context) {
     loadData();
@@ -47,9 +48,7 @@ class _EditContactPageState extends State<EditContactPage> {
   void loadData() {
     if (widget.contact != null) {
       _nameController.text = widget.contact!.name;
-      _accountController.text = widget.contact!.displayAccount;
-    } else {
-      getLastContactIndex().then((index) => lastIndex = index);
+      _accountController.text = widget.contact!.account.toString();
     }
   }
 
@@ -57,11 +56,15 @@ class _EditContactPageState extends State<EditContactPage> {
     final name = _nameController.text;
     final account = int.tryParse(_accountController.text);
     if (account != null) {
-      final Contact newContact = Contact(
-          widget.contact != null ? widget.contact!.id : lastIndex + 1,
-          name,
-          account);
-      save(newContact).then((id) => Navigator.pop(context));
+      final Contact contactToSave = Contact(
+          widget.contact != null ? widget.contact!.id : 0, name, account);
+      _upsertContact(contactToSave).then((id) => Navigator.pop(context));
     }
+  }
+
+  Future<dynamic> _upsertContact(Contact contact) {
+    return widget.contact != null
+        ? _contactDao.update(contact)
+        : _contactDao.insert(contact);
   }
 }

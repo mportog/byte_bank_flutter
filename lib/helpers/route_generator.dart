@@ -11,13 +11,13 @@ class RouteGenerator {
     final String argumentNotCompatible = 'Wrong type parameter: $args';
     Widget page;
     switch (settings.name) {
-      case '/':
+      case dashboardPageRouteName:
         page = const DashboardPage();
         break;
-      case 'contacts':
+      case contactsPageRouteName:
         page = const ContactsPage();
         break;
-      case 'edit':
+      case editPageRouteName:
         if (args == null) {
           page = const EditContactPage();
         } else if (args is Contact) {

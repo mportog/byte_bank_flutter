@@ -1,9 +1,12 @@
-import 'package:byte_bank_alura_app/database/app_database.dart';
+import 'package:byte_bank_alura_app/dao/contact_dao.dart';
 import 'package:byte_bank_alura_app/helpers/constants.dart';
 import 'package:byte_bank_alura_app/models/contact_model.dart';
+import 'package:byte_bank_alura_app/pages/edit_contact_page.dart';
 import 'package:byte_bank_alura_app/pages/error_page.dart';
 import 'package:byte_bank_alura_app/widgets/custom_contact_card_widget.dart';
 import 'package:flutter/material.dart';
+
+const String contactsPageRouteName = 'contacts';
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({Key? key}) : super(key: key);
@@ -13,6 +16,7 @@ class ContactsPage extends StatefulWidget {
 }
 
 class _ContactsPageState extends State<ContactsPage> {
+  final ContactDao _contactDao = ContactDao();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +24,7 @@ class _ContactsPageState extends State<ContactsPage> {
           title: const Text(contactsPageTitle),
         ),
         body: FutureBuilder(
-            future: findAll(),
+            future: _contactDao.getAll(),
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
@@ -46,7 +50,7 @@ class _ContactsPageState extends State<ContactsPage> {
         floatingActionButton: FloatingActionButton.extended(
           label: const Text(addContactLabel),
           elevation: cardElevation,
-          onPressed: () => Navigator.pushNamed(context, 'edit'),
+          onPressed: () => Navigator.pushNamed(context, editPageRouteName),
           icon: newContacIcon,
           tooltip: addContactLabel,
         ));
