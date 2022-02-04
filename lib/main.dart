@@ -1,6 +1,8 @@
 import 'package:byte_bank_alura_app/helpers/constants.dart';
-import 'package:byte_bank_alura_app/helpers/route_generator.dart';
+import 'package:byte_bank_alura_app/router.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:nuvigator/next.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryColor,
       ),
-      onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: '/',
+      home: Nuvigator(router: MyRouter()),
     );
   }
 }

@@ -35,6 +35,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite: ^2.0.2
   path: ^1.8.0
+  nuvigator: ^1.4.1
+
 
 dev_dependencies:
   flutter_test:
